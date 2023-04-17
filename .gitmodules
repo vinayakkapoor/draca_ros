@@ -1,0 +1,6 @@
+[submodule "singularity/user_ros_workspace/src/ddrl_planner"]
+	path = singularity/user_ros_workspace/src/ddrl_planner
+	url = git@mrs.felk.cvut.cz:vinayak/ddrl_planner.git
+[submodule "singularity/user_ros_workspace/src/mrs_swarm_core"]
+	path = singularity/user_ros_workspace/src/mrs_swarm_core
+	url = git@mrs.felk.cvut.cz:swarms/mrs_swarm_core.git
