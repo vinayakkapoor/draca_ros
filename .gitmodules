@@ -1,4 +1,4 @@
-[submodule "singularity/user_ros_workspace/src/ddrl_planner"]
-	path = singularity/user_ros_workspace/src/ddrl_planner
-	url = git@mrs.felk.cvut.cz:vinayak/ddrl_planner.git
+[submodule "singularity/user_ros_workspace/src/draca_planner"]
+	path = singularity/user_ros_workspace/src/draca_planner
+	url = git@mrs.felk.cvut.cz:vinayak/draca_planner.git
 	branch = master
