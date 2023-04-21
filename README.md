@@ -5,7 +5,7 @@ draca_ros is an open-source project that provides a singularity container for ru
 
 ## Description
 
-draca_ros is for the [MRS UAV system](https://github.com/ctu-mrs/mrs_uav_system), and uses **trained PyTorch models to control drone swarms.** It depends on the s*warm_control_manager* package, which is currently undergoing testing before being open-sourced. Therefore, draca_ros provides a containerized solution to build everything in a singularity container and run DRACA.
+draca_planner is built for the [MRS UAV system](https://github.com/ctu-mrs/mrs_uav_system), and uses **trained PyTorch models to control drone swarms.** It depends on the *swarm_control_manager* package, which is currently undergoing testing before being open-sourced. Therefore, draca_ros provides a containerized solution to build everything in a singularity container and run draca_planner.
 
 ## Installation
 
