@@ -1,0 +1,2 @@
+uav_list: ["45", "49", "47", "46", "48", "50", "51"]
+node_list: ["colass_controller", "colass_vir_force_updtr", "colass_dec_planner"]

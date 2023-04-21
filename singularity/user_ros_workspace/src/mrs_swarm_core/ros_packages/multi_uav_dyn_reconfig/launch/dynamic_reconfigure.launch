@@ -1,0 +1,14 @@
+<launch>
+
+  <group ns="dynamic_reconfigure">
+    
+    <node name="dyn_reconfig_server" pkg="multi_uav_dynreconfig" type="DynReconfigServer.py" output="screen"> 
+      <!-- name of nodes which need the dynamically updated config -->
+      <rosparam file="$(find multi_uav_dynreconfig)/config/simulation/nodes.yaml" />
+      <!-- path to directory where you want to store the config changes -->
+      <param name="config_file_path" value="$(find multi_uav_dynreconfig)/config/dynamic_reconfigure" />
+    </node>
+  
+  </group>
+
+</launch>

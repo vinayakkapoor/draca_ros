@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+
+  <name>multi_uav_dynreconfig</name>
+  <version>0.0.1</version>
+  <description>Dynamically reconfigure multiple uavs/nodes</description>
+
+  <maintainer email="afzalhmd14@gmail.com">Afzal Ahmad</maintainer>
+
+  <license>free of charge</license>
+
+  <author  email="afzalhmd14@gmail.com">Afzal Ahmad</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>dynamic_reconfigure</depend>
+  <depend>message_generation</depend>
+  <depend>message_runtime</depend>
+
+</package>

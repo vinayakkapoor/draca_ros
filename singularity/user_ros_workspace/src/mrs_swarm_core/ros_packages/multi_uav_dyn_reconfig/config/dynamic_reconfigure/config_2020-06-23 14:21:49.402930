@@ -1,0 +1,16 @@
+controller_linear_gain: 1.0
+force_max_value: 1.0
+force_min_value: 0.05
+k_drag: 0.0
+k_nav: 1.2
+k_obst: 1.0
+k_uav: 1.0
+obst_f_const: 0.6
+obst_f_max_dist: 1.0
+uav_f_coh_const: 0.22
+uav_f_crit_dist: 1.0
+uav_f_fol_dist: 3.0
+uav_f_rep_const: 0.28
+uav_f_zero_dist: 2.0
+vel_max_value: 0.5
+vel_min_value: 0.05
