@@ -1,92 +1,56 @@
+
 # draca_ros
 
-
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://mrs.felk.cvut.cz/gitlab/vinayak/draca_ros.git
-git branch -M master
-git push -uf origin master
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://mrs.felk.cvut.cz/gitlab/vinayak/draca_ros/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
+draca_ros is an open-source project that provides a singularity container for running **DRACA - Deep Reinforcement learning based Autonomous Collision Avoidance**, a plugin for drone swarms. This project was developed at the [Multi-Robot Systems Group](http://mrs.felk.cvut.cz/), Czech Technical University in Prague as part of my undergraduate thesis.
 
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+draca_ros is for the [MRS UAV system](https://github.com/ctu-mrs/mrs_uav_system), and uses **trained PyTorch models to control drone swarms.** It depends on the s*warm_control_manager* package, which is currently undergoing testing before being open-sourced. Therefore, draca_ros provides a containerized solution to build everything in a singularity container and run DRACA.
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+
+Please note that using draca_ros requires significant computing resources, including:
+
+- Over 7 GB of internet data to download necessary dependencies and packages
+- Over 50 GB of temporary root storage to build the Singularity image file
+- About 10 GB of storage to run DRACA and other necessary components
+
+Before using this project, please ensure that your machine has sufficient resources to accommodate these requirements. Additionally, please be aware that running the Singularity build process and DRACA within a container may consume significant CPU and memory resources. Please plan accordingly and ensure that you have adequate resources available before using this project.
+
+
+For installing draca_ros, please carefully follow these instructions:
+
+1. Begin by pulling the `draca_planner` submodule using the `git submodule update --init --recursive` command.
+2. Install Singularity and Docker using the scripts provided in the `singularity/install` directory. If these dependencies are already installed, you may skip this step.
+3. Proceed to build the Singularity container by running the `./singularity/recipe/build.sh` script. This will include the MRS UAV system, ROS Neotic with PyTorch, and all other necessary dependencies.
+
 
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+
+To use draca_ros, follow these steps:
+
+- Run the Singularity container using `./singularity/run_singularity.sh`.
+- Move to the `user_ros_workspace` using `cd user_ros_workspace`.
+- Build the `mrs_swarm_core` ROS packages and `draca_planner` using `catkin build -c`.
+- Change the directory to `./src/mrs_swarm_core/simulation/` and run the simulation using `./simulate_swarm.sh -f config/sim_config.yaml`.
+
+The simulation configurations and the Gazebo world can be changed under `mrs_swarm_core/simulation/config/sim_config.yaml` and `mrs_swarm_core/simulation/config/gazebo_config`.
+
+**Please checkout *draca_planner* to gain a better perspective on the capabilities and scope of customisation of this plugin**
+
 
 ## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+If you encounter any bugs, please raise a GitHub issue. For suggestions or other forms of support, please contact us at vinayakkapoor12@gmail.com.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+## Authors and Acknowledgments
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+I would like to thank [Dr. Martin Saska](http://mrs.felk.cvut.cz/people/martin-saska) and the entire research group for their constant help. I am eternally grateful to [Mr. Afzal Ahmad](http://mrs.felk.cvut.cz/people/afzal-ahmad) and [Dr. Daniel Bonilla Licea](http://mrs.felk.cvut.cz/members/postdocs/daniel-bonilla) for guiding me at every step of the way. It was indeed a pleasure to learn under their able guidance. I would also like to extend my gratitude to [Dr. Jitendra Singh Rathore](https://www.bits-pilani.ac.in/pilani/jitendrarathore/profile) for his support and encouragement throughout the project.
 
 ## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+draca_ros is released under the MIT License.
+
+## Project Status
+
+draca_ros is an actively maintained project, and we welcome feedback and contributions from the community. Please let us know if you encounter any bugs or issues.
