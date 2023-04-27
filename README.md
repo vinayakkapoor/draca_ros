@@ -36,7 +36,7 @@ To use draca_ros, follow these steps:
 
 The simulation configurations and the Gazebo world can be changed under `mrs_swarm_core/simulation/config/sim_config.yaml` and `mrs_swarm_core/simulation/config/gazebo_config`.
 
-**Please checkout *draca_planner* to gain a better perspective on the capabilities and scope of customisation of this plugin**
+**Please checkout *[draca_planner](https://github.com/vinayakkapoor/draca_planner)* to gain a better perspective on the capabilities and scope of customisation of this plugin**
 
 
 ## Support
